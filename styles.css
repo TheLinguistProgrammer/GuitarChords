@@ -1,0 +1,135 @@
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    margin: 0px auto;
+}
+
+#container {
+    width: 285px;
+    height: 500px;
+    overflow: hidden;
+    scale: 0.5;
+    
+}
+
+table {
+    border-spacing: 0;
+    margin: 0px auto;
+    width: 225px;
+    height: 350px;
+    border: 2px solid black;
+}
+
+caption {
+    font-size: 2rem;
+    font-weight: bold;
+    height: 70px;
+    user-select: none;
+}
+
+tr {
+    margin: 0;
+    padding: 0;
+    padding-top: 10px;
+
+}
+
+td {
+    border: 2px solid black;
+    width: 45px;
+    height: 70px;
+    justify-items: center;
+}
+
+
+.point {
+    position: relative;
+    background-color: black;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    left: -22.5px;
+}
+
+.invisible {
+    border: 0;
+    position: absolute;
+    
+}
+
+.invisible .point {
+    background-color: red;
+    top: 20px;
+}
+
+#fret-head {
+    height: 0px;
+    visibility: collapese;
+    overflow: hidden;
+    
+}
+
+.hallow:not(.invisible) {
+    border: 5px solid black;
+    width: 45px;
+    height: 1px;
+    justify-items: center;
+    background-color: black;
+}
+
+.hallow .point {
+    top: -30px;
+    background-color: transparent;
+    border: 1px solid black;
+    height: 3.14px;
+    width: 3.14px;
+    scale: 5;
+    
+}
+
+.bar {
+    position: absolute;
+    border-radius: 10px;
+    width: 255px;
+    height: 15px;
+    background-color: black;
+    left: 10px;
+    
+}
+
+.cross {
+    position: relative;
+    left: -22.5px;
+    height: 0;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 30px;
+    top: -50px;
+    left: -22.5px;
+    user-select: none;
+}
+
+.bar-index {
+    font-size: 1.5rem;
+    left: 270px;
+    user-select: none;
+    height: 20px;
+    width: 10px;
+}
+
+/*
+    white-space: nowrap;
+    padding: 0;
+    margin: -1px; 
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    width: 1px;
+*/
