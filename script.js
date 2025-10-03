@@ -1,5 +1,9 @@
 const output = document.getElementById("output");
 const generateChordBtn = document.getElementById("generate-chord-btn");
+const timer = document.getElementById("timer");
+const chordNameContainer = document.getElementById("chord-name-container");
+const chordsInaRow = document.getElementById("chords-in-a-row");
+const timePerChord = document.getElementById("time-per-chord");
 
 function chord2Matrix2HTML (chordObject) {
     const {fingering, chordName} = chordObject;
@@ -80,50 +84,66 @@ function chord2Matrix2HTML (chordObject) {
     }
     HTML = HTML.concat(`</table class="chord"></div class="chord-container">`)
     // console.log(HTML);
+    chordNameContainer.innerText = chordName;
     output.innerHTML += HTML;
 }
 
-
-const amChord = {
-    "chordName": "Am",
-    "fingering": "x02210"
-};
-
-const dmChord = {
-    "chordName": "Dm",
-    "fingering": "xx0231"
-};
-
-const dChord = {
-    "chordName": "D",
-    "fingering": "xx0232"
-};
-
-const aChord = {
-    "chordName": "A",
-    "fingering": "002220"
-};
-
-const fChord = {
-    "chordName": "F",
-    "fingering": "133211"
-};
-
-const bmChord = {
-    "chordName": "Bm",
-    "fingering": "x24432"
+// GET DATA FROM JSON FILE //
+// all chords below
+// https://d2xkd1fof6iiv9.cloudfront.net/images/guitar-chords/guitar-chord-chart.png
+const fileLink = "https://raw.githubusercontent.com/TheLinguistProgrammer/datafiles/refs/heads/main/chordData.json";
+let chordList = [];
+try {
+    fetch(fileLink)
+    .then(res => res.json())
+    .then((data) => {
+        for (let item of data) {
+            chordList.push(item);
+        }
+    });
+} catch (e) {
+    console.log(e);
 }
-
-const allChords = [
-    amChord, dmChord, dChord, aChord, fChord, bmChord
-];
-
-// console.log(array2HTML(chord2Matrix(dChord)));
 
 function showRandomChord() {
     output.innerHTML = ``;
-    const randInt = Math.floor(Math.random() * allChords.length);
-    chord2Matrix2HTML(allChords[randInt]);
+    const randInt = Math.floor(Math.random() * chordList.length);
+    chord2Matrix2HTML(chordList[randInt]);
 }
 
-generateChordBtn.addEventListener("click", showRandomChord);
+
+function countdown() {
+    let countVal = Number(timePerChord.value);
+    timer.innerText = countVal;
+    countVal--;
+    setInterval(
+        () => {
+        if (countVal >= 0) {
+            timer.innerText = countVal;
+            countVal--;
+        } else {
+            return;
+        }
+    }, 1000);
+    showRandomChord();
+}
+
+
+function repeatCountdown() {
+    let num = Number(chordsInaRow.value);
+    setInterval(
+        () => {
+        if (num > 0) {
+            //console.log(num);
+            countdown();
+            num--;
+        } else {
+            return;
+        }
+    }, (Number(timePerChord.value) * 1000))
+    countdown();
+    num--;
+    }
+
+// generateChordBtn.addEventListener("click", showRandomChord);
+generateChordBtn.addEventListener("click", repeatCountdown);

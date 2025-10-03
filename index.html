@@ -9,13 +9,25 @@
 
     <body>
         <h1>GUITAR CHORDS</h1>
-        <button id="generate-chord-btn">RANDOM CHORD</button>
-
-        <div id="output">
-            
+        <div id="controls">
+            <select id="chords-in-a-row">
+                <option value="0">chords in a row</option>
+                <option value="10">10</option>
+                <option value="5">5</option>
+            </select>
+            <select id="time-per-chord">
+                <option value="0">Time per chord</option>
+                <option value="5">5 seconds</option>
+                <option value="3">3 seconds</option>
+                <option value="2">2 seconds</option>
+            </select>
+            <button id="generate-chord-btn">Generate Chord</button>
         </div>
 
-
+        <div id="timer"></div>
+        <div id="chord-name-container">Chord Name</div>
+        <div id="output">
+        </div>
 
         <script src="script.js">
         </script>
